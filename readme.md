@@ -25,5 +25,5 @@ conda activate iot_experiment_cntrl
 To run the software, simply use the command:
 
 ```command
-python GUI.py
+python src/GUI.py
 ```
