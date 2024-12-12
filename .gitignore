@@ -1,0 +1,3 @@
+src/__pycache__/*
+results/*
+src/comtypes_gen/__pycache__/*
