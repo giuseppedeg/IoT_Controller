@@ -1,0 +1,32 @@
+{
+    "ELEMENTS_TO_RECORD": 11,
+
+    "ELEMENTS_TO_RECORD_SPECIFIC":
+        {
+            "extra_H00":1,
+            "extra_H01":3,
+            "extra_H02":3,
+            "extra_H03":3
+        },
+
+    "DEFAULT_ORDER":[
+        "extra_H00",
+        "extra_H01",
+        "extra_H02",
+        "extra_H03",
+        "H00",
+        "H01",
+        "H02",
+        "H03",
+        "H06",
+        "H08",
+        "H09",
+        "H12",
+        "H14",
+        "H05"
+    ]
+
+}
+
+
+
