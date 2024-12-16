@@ -1,7 +1,7 @@
 import os
 import shutil
 import datetime
-from controller import reorder_activities, IoT_Controller, UsersStatus, IOT_NotConnectedError, IOT_WritingStateError
+from controller import reorder_activities, IoT_Controller, IOT_NotConnectedError, IOT_WritingStateError, init_activities_name, restore_activites_name
 import config as C
 import time
 from PIL.ImageQt import ImageQt
@@ -392,6 +392,7 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     # Init 
     os.makedirs(C.RESULTS_PROTOCOL_FOLDER, exist_ok=True)
+    init_activities_name()
     reorder_activities()
 
     # Run the GUI
@@ -401,3 +402,6 @@ if __name__ == "__main__":
     window.show()
 
     app.exec()
+
+    # restore name of inkml files before exit
+    restore_activites_name()

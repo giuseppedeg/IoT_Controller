@@ -8,9 +8,34 @@ DEFAULT_RES_TMP = C.DEFAULT_RES_TMP
 RESULTS_PROTOCOL_FOLDER = C.RESULTS_PROTOCOL_FOLDER
 MAX_ID_LEN = C.MAX_ID_LEN
 DEFAULT_ORDER = C.DEFAULT_ORDER
+ACTIVITES_PATH = C.ACTIVITES_PATH
 
 
+def init_activities_name():
+    if DEFAULT_ORDER:
+        ordered_activities = DEFAULT_ORDER
+        ordered_activities = [f"{os.path.splitext(el)[0]}.inkml" for el in ordered_activities]
+    else:
+        ordered_activities = os.listdir(ACTIVITES_PATH)
+    
+    zpadd_len = len(str(len(ordered_activities)))
+    for ind, file_name in enumerate(ordered_activities):
+        new_name = f"{str(ind).zfill(zpadd_len)}_{file_name}"
 
+        os.rename(src=os.path.join(ACTIVITES_PATH, file_name),
+                  dst=os.path.join(ACTIVITES_PATH, new_name))
+
+
+def restore_activites_name():
+    ordered_activities = os.listdir(ACTIVITES_PATH)
+    
+    for file_name in ordered_activities:
+        new_name = file_name.split("_")
+        new_name = "_".join(new_name[1:])
+
+        os.rename(src=os.path.join(ACTIVITES_PATH, file_name),
+                  dst=os.path.join(ACTIVITES_PATH, new_name))
+        
 
 
 def reorder_activities(user_name="", len_id=20, ind_start_rnd=4, zfill_act=2):
@@ -32,7 +57,7 @@ def reorder_activities(user_name="", len_id=20, ind_start_rnd=4, zfill_act=2):
         random.shuffle(random_ordered_activities)
     
     rename_dict = {}
-    for activityname in os.listdir(C.ACTIVITES_PATH):
+    for activityname in os.listdir(ACTIVITES_PATH):
         jump_next = False
         for not_change_order_activityname in fixed_ordered_activities:
           if not_change_order_activityname in activityname:
@@ -50,7 +75,7 @@ def reorder_activities(user_name="", len_id=20, ind_start_rnd=4, zfill_act=2):
                 rename_dict[activityname] = newname
 
     for old_name, newname in rename_dict.items():
-        os.rename(src=os.path.join(C.ACTIVITES_PATH, old_name),dst=os.path.join(C.ACTIVITES_PATH, newname))
+        os.rename(src=os.path.join(ACTIVITES_PATH, old_name),dst=os.path.join(ACTIVITES_PATH, newname))
 
 
 
